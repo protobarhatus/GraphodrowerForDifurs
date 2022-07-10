@@ -1,4 +1,4 @@
-#include "Dorman_prince.h"
+#include "Dormand_prince.h"
 
 //норма вектора. сейчас - это сумма модулей составл€ющих
 long double norma(long double y)
