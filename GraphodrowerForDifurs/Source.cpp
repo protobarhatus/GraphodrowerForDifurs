@@ -36,19 +36,21 @@ int main()
 	plot.setAdaptiveScale(true);
 	
 	long double step = 0.1;
-	plot.setRangeParams(0, 1000, step);
-	plot.setDrawingPoints(true);
+	plot.setRangeParams(0, 200, step);
 	plot.setSize(800, 800);
 	
-	//plot.initializePointPlotDrawing();
-	
-	/*draw smth*/
-
-
-	
+	double d = 0.3, om = 1.0, a = 1.0;
+	Vector point(0.1, 0.1);
+	plot.setFunction([d, om, a, &point, step](double t)->Vector2 {
+		Vector old_point = point;
+		point = RK4(point, t, step, [d, om, a](long double, const Vector& v) {
+			return Vector(2 * d * v.x() * (1.0 - a * v.y() * v.y()) - om * om * v.y(), v.x());
+			});
+		return old_point;
+		});
 	
 	plot.draw();
-	//plot.draw(&window, 0, 0, 800, 800);
+	
 	window.display();
 	
 	system("pause");

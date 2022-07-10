@@ -171,7 +171,7 @@ Vector ButcherRK(const ButchersTable& table, int result_string, Vector d, long d
 
 Vector RK4(const Vector& start_values, long double start, long double step, std::function<Vector(long double, const Vector&)> func)
 {
-	return ButcherRK(tableForRK4(), 1, start_values, start, step, func);
+	return ButcherRK(tableForRK4(), 0, start_values, start, step, func);
 }
 
 
