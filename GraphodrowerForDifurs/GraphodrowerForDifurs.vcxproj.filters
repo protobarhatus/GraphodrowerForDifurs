@@ -30,7 +30,7 @@
     <ClCompile Include="ButchersTable.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Dorman_prince.cpp">
+    <ClCompile Include="Dormand_prince.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="Newtons_pools.cpp">
@@ -89,7 +89,7 @@
     <ClInclude Include="ButchersTable.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Dorman_prince.h">
+    <ClInclude Include="Dormand_prince.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="Newtons_pools.h">

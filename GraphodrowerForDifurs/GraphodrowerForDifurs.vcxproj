@@ -133,7 +133,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ButchersTable.cpp" />
-    <ClCompile Include="Dorman_prince.cpp" />
+    <ClCompile Include="Dormand_prince.cpp" />
     <ClCompile Include="geometry 3d.cpp" />
     <ClCompile Include="MyLib\Graphics and SFML\DrImage.cpp" />
     <ClCompile Include="MyLib\Graphics and SFML\SFML Graphic Functions.cpp" />
@@ -155,7 +155,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ButchersTable.h" />
-    <ClInclude Include="Dorman_prince.h" />
+    <ClInclude Include="Dormand_prince.h" />
     <ClInclude Include="geometry 3d.h" />
     <ClInclude Include="MyLib\Graphics and SFML\DrImage.h" />
     <ClInclude Include="MyLib\Graphics and SFML\SFML Graphic Functions.h" />
