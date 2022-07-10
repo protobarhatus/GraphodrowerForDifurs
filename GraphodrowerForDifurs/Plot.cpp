@@ -110,12 +110,11 @@ void Plot::display()
 	this->image.draw(0, 0);
 	this->signScale(this->image.getWindow(), 0, 0);
 }
-void Plot::draw(sf::RenderTexture & texture, int x_bias, int y_bias)
+void Plot::draw(sf::RenderTarget & texture, int x_bias, int y_bias)
 {
 	this->drawOnImage();
 	this->image.draw(x_bias, y_bias, &texture);
 	this->signScale(&texture, x_bias, y_bias);
-	texture.display();
 }
 void Plot::signScale(sf::RenderTarget * target, int x_bias, int y_bias)
 {

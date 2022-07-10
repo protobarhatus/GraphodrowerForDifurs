@@ -42,10 +42,7 @@ int main()
 	
 	//plot.initializePointPlotDrawing();
 	
-	long double t = 0;
-	
-	plot.setStep(step);
-	long double t_end = 0;
+	/*draw smth*/
 
 
 	
@@ -53,7 +50,6 @@ int main()
 	plot.draw();
 	//plot.draw(&window, 0, 0, 800, 800);
 	window.display();
-	std::cout << "t = " << t_end * 1e6 << '\n';
 	
 	system("pause");
 	plot.saveToFile("G:\\\\q.png");

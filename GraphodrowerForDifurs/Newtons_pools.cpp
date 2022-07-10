@@ -9,7 +9,7 @@
 #include <iomanip>
 #include <iostream>
 #include "Newtons_pools.h"
-#include "Dorman_prince.h"
+#include "Dormand_prince.h"
 
 Vector pow(Vector a, int p)
 {

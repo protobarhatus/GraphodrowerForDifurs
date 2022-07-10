@@ -18,7 +18,7 @@ public:
 	void setAdaptiveScale(bool enabled);
 	void setRangeParams(double begin, double end, double step);
 	void draw();
-	void draw(sf::RenderTexture & texture, int x_bias, int y_bias);
+	void draw(sf::RenderTarget & texture, int x_bias, int y_bias);
 	void setConstantBorders(const Vector2 & min, const Vector2 & max);
 	void display();
 	//нужно для отрисовки нескольких графиков на одном полотне. не рисует, а сохраняет результат в буфер
