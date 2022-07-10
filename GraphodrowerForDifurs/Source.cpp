@@ -30,31 +30,25 @@ int main()
 
 
 	
-
-
-	Plot plot(&window);
-	plot.setAdaptiveScale(true);
-	
-	long double step = 0.1;
+	Plot3D plot;
+	double step = 0.01;
 	plot.setRangeParams(0, 200, step);
-	plot.setSize(800, 800);
-	
-	double d = 0.3, om = 1.0, a = 1.0;
-	Vector point(0.1, 0.1);
-	plot.setFunction([d, om, a, &point, step](double t)->Vector2 {
-		Vector old_point = point;
-		point = RK4(point, t, step, [d, om, a](long double, const Vector& v) {
-			return Vector(2 * d * v.x() * (1.0 - a * v.y() * v.y()) - om * om * v.y(), v.x());
+
+	double s = 10, r = 28, b = 8.0 / 3.0;
+	Vector p(1, 1, 1);
+	plot.setFunction([s, r, b, &p, step](double t)->Vector3d {
+		Vector old_p = p;
+		p = RK4(p, t, step, [s, r, b](long double t, const Vector& p) {
+			return Vector(s * (p.y() - p.x()), p.x() * (r - p.z()) - p.y(), p.x() * p.y() - b * p.z());
 			});
-		return old_point;
+		return old_p;
 		});
 	
-	plot.draw();
-	
+	plot.draw(&window, 0, 0, 800, 800);
 	window.display();
 	
 	system("pause");
-	plot.saveToFile("G:\\\\q.png");
+	
 	return 0;
 }
 

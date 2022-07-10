@@ -62,20 +62,9 @@ void Plot3D::countPlot()
 	}
 
 }
-void Plot3D::drawOnCanvas(int width, int height)
-{
-	
-	//плоскость XOZ
-	this->drawProjection(0, 0, width / 2, height / 2, Plane(0, 1, 0, 0));
-	//плоскость YOZ
-	this->drawProjection(width - width / 2, 0, width / 2, height / 2, Plane(1, 0, 0, 0));
-	//плоскость XOY
-	this->drawProjection(0, height - height / 2, width / 2, height / 2, Plane(0, 0, 1, 0));
-	//пользовательская плоскость (добавить)
-	this->drawProjection(width - width / 2, height - height / 2, width / 2, height / 2, Plane(1, 1, 1, 0));
-}
+
 #include <iostream>
-void Plot3D::drawProjection(int x, int y, int width, int height, const Plane & plane)
+void Plot3D::drawProjection(sf::RenderTarget& target, int x, int y, int width, int height, const Plane & plane)
 {
 	Plot plot;
 	plot.setRangeParams(0.0, this->lines.size(), 1.0);
@@ -89,24 +78,8 @@ void Plot3D::drawProjection(int x, int y, int width, int height, const Plane & p
 		else
 			res =  plane.getCoordinatesInPlanesUnitsVector(getPointOfNormalToPlane(th_lines[ind].first, plane));
 		return res;
-		//хрень ниже чисто для отладки
-		if (ind == th_lines.size())
-			--ind;
-		if (plane.b() == 1)
-			r1 = Vector2(th_lines[ind].first.x(), th_lines[ind].first.z());
-		else if (plane.c() == 0)
-			r1= Vector2(th_lines[ind].first.y(), th_lines[ind].first.z());
-		else r1 = Vector2(th_lines[ind].first.x(), th_lines[ind].first.y());
-		if ((res.x() != r1.x() || res.y() != r1.y()) && ind < 990)
-		{
-			std::cout << "\n#########\npoint: (" << th_lines[ind].first.x() << "; " << th_lines[ind].first.y() << "; " << th_lines[ind].first.z() << ")\n";
-			std::cout << "res: (" << res.x() << "; " << res.y() << ")\n";
-			std::cout << "r1: (" << r1.x() << "; " << r1.y() << ")\n";
-			system("pause");
-		}
-		return res;
 	});
-	plot.draw(this->canvas, x, y);
+	plot.draw(target, x, y);
 }
 void Plot3D::draw(sf::RenderWindow * window, int x, int y, int width, int height)
 {
@@ -114,10 +87,12 @@ void Plot3D::draw(sf::RenderWindow * window, int x, int y, int width, int height
 }
 void Plot3D::draw(sf::RenderTarget * window, int x, int y, int width, int height)
 {
-	this->canvas.create(width, height);
-	this->drawOnCanvas(width, height);
-	sf::Sprite sprite(this->canvas.getTexture());
-	sf::FloatRect view = this->canvas.getView().getViewport();
-	sprite.setPosition(x + view.left, y + view.top);
-	window->draw(sprite);
+	//плоскость XOZ
+	this->drawProjection(*window, x + 0, y + 0, width / 2, height / 2, Plane(0, 1, 0, 0, true));
+	//плоскость YOZ
+	this->drawProjection(*window, x + width - width / 2, y + 0, width / 2, height / 2, Plane(1, 0, 0, 0, true));
+	//плоскость XOY
+	this->drawProjection(*window, x + 0, y + height - height / 2, width / 2, height / 2, Plane(0, 0, 1, 0, true));
+
+
 }
